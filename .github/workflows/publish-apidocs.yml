@@ -42,7 +42,8 @@ jobs:
 
       - name: Run phpdoc
         run: |
-          docker run --rm -v $(pwd)/.moodle:/data phpdoc/phpdoc:3 -c phpdoc.xml
+          cat $(pwd)/.moodle/phpdoc.xml
+          docker run --rm -v $(pwd)/.moodle:/data phpdoc/phpdoc:3 -c phpdoc.xml -v
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
