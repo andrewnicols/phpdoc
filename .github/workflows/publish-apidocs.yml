@@ -35,7 +35,7 @@ jobs:
           node-version-file: '.moodle/.nvmrc'
 
       - name: Run ignorefiles
-        run:
+        run: |
           cd .moodle
           npm install
           npx grunt ignorefiles
