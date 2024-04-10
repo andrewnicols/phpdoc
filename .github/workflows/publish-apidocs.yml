@@ -1,7 +1,7 @@
 name: Generate API docs and publish to Github Pages
 
 env:
-  BRANCHLIST: "MDL-81407-main"
+  BRANCHLIST: "MDL-81497-main"
   VERSIONLIST: "main"
 
 on:
