@@ -27,7 +27,7 @@ jobs:
           repository: andrewnicols/moodle
           path: .moodle
           show-progress: ''
-          branches: ${{ env.BRANCHLIST }}
+          ref: ${{ env.BRANCHLIST }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
