@@ -13,6 +13,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -40,10 +42,22 @@ jobs:
           npm install
           npx grunt ignorefiles
 
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        with:
+          key: cache-moodle-phpdocs-main
+          path: .moodle/phpdocs/cache
+
       - name: Run phpdoc
         run: |
           cat $(pwd)/.moodle/phpdoc.xml
           docker run --rm -v $(pwd)/.moodle:/data phpdoc/phpdoc:3 -c phpdoc.xml
+
+      - name: Ppersist cache
+        uses: actions/cache/save@v4
+        with:
+          key: cache-moodle-phpdocs-main
+          path: .moodle/phpdocs/cache
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
